@@ -55,3 +55,4 @@ target/
 # gedit temp
 *~
 *.pyc
+*log
