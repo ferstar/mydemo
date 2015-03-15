@@ -4,8 +4,8 @@
 import tornado.web
 
 import sys
-reload(sys)
-sys.setdefaultencoding('utf-8') 
+from imp import reload
+#sys.setdefaultencoding('utf-8')
 
 class IndexHandler(tornado.web.RequestHandler):
     def get(self):

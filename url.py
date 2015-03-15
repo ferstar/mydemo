@@ -2,8 +2,8 @@
 #coding:utf-8
 
 import sys
-reload(sys)
-sys.setdefaultencoding('utf-8')
+from imp import reload
+#sys.setdefaultencoding('utf-8')
 
 from handler.index import IndexHandler
 

@@ -13,11 +13,11 @@ from application import application
 from tornado.options import define,options
 
 define("port", default=9010, help="run on the given port", type=int)
-   
+
 if __name__ == '__main__':
     tornado.options.parse_command_line()
     def run(mid,port):
-        print "Process %d start" % mid
+        print("Process %d start" % mid)
         sys.stdout.flush()
         http_server = tornado.httpserver.HTTPServer(application)
         http_server.listen(port)
