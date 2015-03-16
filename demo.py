@@ -11,7 +11,7 @@ from application import application
 if __name__ == '__main__':
     tornado.options.parse_command_line()
     def run(mid,port):
-        print("Process", mid, "start,", "Server started at port", port)
+        print("Process %d started, Server started at port %d." %(mid, port))
         sys.stdout.flush()
         http_server = tornado.httpserver.HTTPServer(application)
         http_server.listen(port)
