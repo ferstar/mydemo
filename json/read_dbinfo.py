@@ -11,7 +11,7 @@ def date_handler(obj):
     return obj.isoformat() if hasattr(obj, 'isoformat') else obj
 #定义帮助函数
 def help():
-    print ("age: -t user -c user_id,-h,help")
+    print ("usage: -t user -c user_id,-h,help")
     sys.exit()
 
 #连接数据库
@@ -29,7 +29,7 @@ opts,args=getopt.getopt(sys.argv[1:],'t:c:h',["table=","columns=","help"])
 
 #设置默认值变量，当没有传参时就会使用默认值。
 table_value="user"
-columns_value="user_id"
+columns_value="*"
 
 for opt,value in opts:
     if opt in("-t","--table"):
