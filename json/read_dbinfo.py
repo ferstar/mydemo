@@ -20,7 +20,7 @@ def searchdb(table, columns):
     cur = conn.cursor(cursor_factory=RealDictCursor)
     db = "SELECT " + columns + " FROM surm." + table
     cur.execute(db)
-    data = json.dumps(cur.fetchall(), default=date_handler, ensure_ascii=False)
+    data = json.dumps(cur.fetchall(), default=date_handler, ensure_ascii=False, indent=2)
     return data
 
 #获取传参内容，短格式为-t,-c,-h,其中-h不需要传值。
@@ -28,7 +28,7 @@ def searchdb(table, columns):
 opts,args=getopt.getopt(sys.argv[1:],'t:c:h',["table=","columns=","help"])
 
 #设置默认值变量，当没有传参时就会使用默认值。
-table_value="user"
+table_value="meeting"
 columns_value="*"
 
 for opt,value in opts:
@@ -43,4 +43,4 @@ for opt,value in opts:
         assert False, "unhandled option"
 
 data = searchdb(table_value, columns_value)
-print("json " + data)
+print(data)
