@@ -9,7 +9,7 @@ def blankReplace(a):
         s=s.replace(' ','')
     return s
 
-file=open(r'E:\rand_data.txt','w')
+file=open(r'./rand_data.txt','w')
 for j in range(1000):
     data=[random.randint(0,3) for i in range(1000)]
     strdata=blankReplace(data)
