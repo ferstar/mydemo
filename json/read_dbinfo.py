@@ -1,20 +1,26 @@
-#!/usr/bin/env python3
-# encoding: utf-8
 import json
-import psycopg2
-from psycopg2.extras import RealDictCursor
 import getopt
 import sys
 
-#´¦ÀítimestampÀàÐÍÊý¾Ý
+import psycopg2
+from psycopg2.extras import RealDictCursor
+
+
+
+
+
+# ï¿½ï¿½ï¿½ï¿½timestampï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 def date_handler(obj):
     return obj.isoformat() if hasattr(obj, 'isoformat') else obj
-#¶¨Òå°ïÖúº¯Êý
+
+
+# ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 def help():
-    print ("usage: -t user -c user_id,-h,help")
+    print("usage: -t user -c user_id,-h,help")
     sys.exit()
 
-#Á¬½ÓÊý¾Ý¿â
+
+# ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½
 def searchdb(table, columns):
     conn = psycopg2.connect('dbname=surm user=marvin password=marvint')
     cur = conn.cursor(cursor_factory=RealDictCursor)
@@ -23,21 +29,21 @@ def searchdb(table, columns):
     data = json.dumps(cur.fetchall(), default=date_handler, ensure_ascii=False, indent=2)
     return data
 
-#»ñÈ¡´«²ÎÄÚÈÝ£¬¶Ì¸ñÊ½Îª-t,-c,-h,ÆäÖÐ-h²»ÐèÒª´«Öµ¡£
-#³¤¸ñÊ½Îª--table,--columns,--help£¬³¤¸ñÊ½--help²»ÐèÒª´«Öµ¡£
-opts,args=getopt.getopt(sys.argv[1:],'t:c:h',["table=","columns=","help"])
+# ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý£ï¿½ï¿½Ì¸ï¿½Ê½Îª-t,-c,-h,ï¿½ï¿½ï¿½ï¿½-hï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½Öµï¿½ï¿½
+#ï¿½ï¿½ï¿½ï¿½Ê½Îª--table,--columns,--helpï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½--helpï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½Öµï¿½ï¿½
+opts, args = getopt.getopt(sys.argv[1:], 't:c:h', ["table=", "columns=", "help"])
 
-#ÉèÖÃÄ¬ÈÏÖµ±äÁ¿£¬µ±Ã»ÓÐ´«²ÎÊ±¾Í»áÊ¹ÓÃÄ¬ÈÏÖµ¡£
-table_value="meeting"
-columns_value="*"
+#ï¿½ï¿½ï¿½ï¿½Ä¬ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð´ï¿½ï¿½ï¿½Ê±ï¿½Í»ï¿½Ê¹ï¿½ï¿½Ä¬ï¿½ï¿½Öµï¿½ï¿½
+table_value = "meeting"
+columns_value = "*"
 
-for opt,value in opts:
-    if opt in("-t","--table"):
-        table_value=value
-       #Èç¹ûÓÐ´«²Î£¬ÔòÖØÐÂ¸³Öµ¡£
-    elif opt in("-c","--columns"):
-        columns_value=value
-    elif opt in("-h","--help"):
+for opt, value in opts:
+    if opt in ("-t", "--table"):
+        table_value = value
+        #ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½Î£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¸ï¿½Öµï¿½ï¿½
+    elif opt in ("-c", "--columns"):
+        columns_value = value
+    elif opt in ("-h", "--help"):
         help()
     else:
         assert False, "unhandled option"
